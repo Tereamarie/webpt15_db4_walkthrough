@@ -29,6 +29,7 @@ exports.up = async function (knex) {
 			.onDelete("CASCADE")
 			.onUpdate("CASCADE");
 		table.float("quantity").notNullable();
+		table.text("measurement").notNullable();
 	});
 
 	await knex.schema.createTable("recipes_instructions", (table) => {

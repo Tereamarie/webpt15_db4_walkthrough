@@ -4,7 +4,7 @@ const morgan = require("morgan");
 
 // Logger
 server.use(morgan("dev"));
-// Convers to json objects
+// Converts to json objects
 server.use(express.json());
 
 // Root route
