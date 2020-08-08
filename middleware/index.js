@@ -16,4 +16,21 @@ const validateRecipeId = async (req, res, next) => {
 	}
 };
 
-module.exports = { validateRecipeId };
+const validateIngredientId = async (req, res, next) => {
+	try {
+		console.log(req.ingredient);
+		const foundIngredientId = await db("ingredients")
+			.where("id", req.params.id)
+			.first();
+
+		if (!foundIngredientId)
+			return res.status(404).json({ message: "Ingredient not found" });
+
+		req.ingredient = foundIngredientId;
+		next();
+	} catch (error) {
+		next(error);
+	}
+};
+
+module.exports = { validateRecipeId, validateIngredientId };

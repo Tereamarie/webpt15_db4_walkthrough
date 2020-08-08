@@ -44,4 +44,19 @@ function getInstructions(recipe_id) {
 		.where(recipe_id);
 }
 
-module.exports = { getRecipes, getShoppingList, getInstructions };
+function allRecipesWithIngredient(ingredient_id) {
+	// 	SELECT recipes.name FROM recipes
+	// JOIN recipes_ingredients ON recipes.id = recipes_ingredients.recipe_id
+	// WHERE ingredient_id = 9;
+	return db("recipes")
+		.select("recipes.id as recipe_id", "recipes.name as recipe_name")
+		.join("recipes_ingredients", "recipes.id", "recipes_ingredients.recipe_id")
+		.where(ingredient_id);
+}
+
+module.exports = {
+	getRecipes,
+	getShoppingList,
+	getInstructions,
+	allRecipesWithIngredient,
+};
