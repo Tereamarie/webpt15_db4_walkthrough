@@ -23,6 +23,25 @@ router.get("/:id/shoppingList", validateRecipeId, async (req, res, next) => {
 
 		if (shoppingList.length === 0)
 			return res.status(404).json({ message: "Shopping list is empty" });
+
+		return res.json(shoppingList);
+	} catch (error) {
+		next(error);
+	}
+});
+
+router.get("/:id/instructions", validateRecipeId, async (req, res, next) => {
+	try {
+		const recipeInstructions = await Recipes.getInstructions({
+			recipe_id: req.recipe.id,
+		});
+
+		if (recipeInstructions.length === 0)
+			return res
+				.status(404)
+				.json({ message: "No instructions found for recipe" });
+
+		res.json(recipeInstructions);
 	} catch (error) {
 		next(error);
 	}

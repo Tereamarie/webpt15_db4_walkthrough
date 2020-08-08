@@ -23,4 +23,25 @@ function getShoppingList(recipe_id) {
 		.where(recipe_id);
 }
 
-module.exports = { getRecipes, getShoppingList };
+function getInstructions(recipe_id) {
+	// 	SELECT recipes_instructions.instruction_id, instructions.instruction, recipes_instructions.step_number FROM instructions
+	// JOIN recipes_instructions ON instructions.id = recipes_instructions.instruction_id
+	// WHERE recipes_instructions.recipe_id = 2
+	// ORDER BY step_number ASC;
+
+	return db("instructions")
+		.select(
+			"recipes_instructions.step_number",
+			"instructions.instruction",
+			"recipes_instructions.instruction_id"
+		)
+		.join(
+			"recipes_instructions",
+			"instructions.id",
+			"recipes_instructions.instruction_id"
+		)
+		.orderBy("step_number")
+		.where(recipe_id);
+}
+
+module.exports = { getRecipes, getShoppingList, getInstructions };
