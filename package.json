@@ -1,0 +1,22 @@
+{
+	"name": "webpt15_db4_walkthrough",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "git@github.com:mranthonysutton/webpt15_db4_walkthrough.git",
+	"author": "Anthony Sutton <anthony.sutton95@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"server": "nodemon -r dotenv/config index.js",
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"express": "^4.17.1",
+		"knex": "^0.21.2",
+		"morgan": "^1.10.0",
+		"sqlite3": "^5.0.0"
+	},
+	"devDependencies": {
+		"dotenv": "^8.2.0",
+		"nodemon": "^2.0.4"
+	}
+}
